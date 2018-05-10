@@ -1,12 +1,19 @@
 version: '2'
 services:
-  automation-server:
-    build: automation-server
-    image: ray/automation-server:v1
-    hostname: 127.0.0.1
+  automation-mongodb:
+    build: automation-mongodb
+    image: ray/automation-mongodb:v2
+    network_mode: bridge
+    # hostname: 127.0.0.1
     volumes:
       - ~/Documents/Mongo/mongodb:/data/db
     ports:
       - "27017:27017"
       - "28017:28017"
+  automation-klov:
+    build: automation-klov
+    image: ray/automation-klov:v2
+    network_mode: bridge
+    # hostname: 127.0.0.1
+    ports:
       - "8012:8012"
